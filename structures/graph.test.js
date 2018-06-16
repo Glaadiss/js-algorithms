@@ -3,7 +3,7 @@ const Graph = require("./graph");
 describe("Graph tests", () => {
   describe("initGraph function", () => {
     test("return graph object", () => {
-      expect(Graph.initGraph()).objectContaining({ vertices: [], edges: [] });
+      expect(Graph.initGraph()).toMatchObject({ vertices: [], edges: [] });
     });
   });
 

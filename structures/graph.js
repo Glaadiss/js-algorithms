@@ -1,14 +1,14 @@
 function initGraph(G) {
-  const graphProperties = {
+  const graph = G || {
     vertices: [],
     edges: []
   };
 
-  const graph = Object.create(G || graphProperties, {
-    addVertix: { value: addVertix.bind(null, graphProperties) },
-    removeVertix: { value: removeVertix.bind(null, graphProperties) },
-    addEdge: { value: addEdge.bind(null, graphProperties) },
-    removeEdge: { value: removeEdge.bind(null, graphProperties) }
+  Object.defineProperties(graph, {
+    addVertix: { value: addVertix.bind(null, graph) },
+    removeVertix: { value: removeVertix.bind(null, graph) },
+    addEdge: { value: addEdge.bind(null, graph) },
+    removeEdge: { value: removeEdge.bind(null, graph) }
   });
 
   return graph;
@@ -24,12 +24,12 @@ function addVertix(graph, vertix) {
 // When edge already exist, it will be replaced with new value
 function addEdge(graph, { from, to, value }) {
   const doesExist = edge => edge.from === from && edge.to === to;
-  return initGraph({
+  return {
     ...graph,
     edges: graph.edges.map(
       edge => (doesExist(edge) ? { ...edge, value } : edge)
     )
-  });
+  };
 }
 
 function removeVertix(graph, vertix) {
@@ -48,4 +48,11 @@ function removeEdge(graph, { from, to }) {
   };
 }
 
-module.exports = { initGraph, addEdge, removeEdge, addVertix, removeVertix };
+module.exports = {
+  Graph: initGraph(),
+  initGraph,
+  addEdge,
+  removeEdge,
+  addVertix,
+  removeVertix
+};
