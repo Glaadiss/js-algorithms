@@ -12,7 +12,7 @@ function calculate(V, E, s) {
   // let changeAppeared = false;
 
   // loop  V.length - 1 times
-  for (let i = 0; i < V.length - 1; i++) {
+  for (let i = 0; i < V.length - 1; i += 1) {
     // loop over each Vertix
     V.forEach((el, elIndex) => {
       if (previousNode[elIndex] !== -1 || el === s) {

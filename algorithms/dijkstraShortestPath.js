@@ -7,16 +7,16 @@
 // {Weights: [3, 5, 6, 7, ...], PreviousNodes: [B, A, C, D, ...]}
 
 function calculate(V, E, s) {
-  let Q = [...V]; // remaining vertices
-  let S = []; // checked vertices
+  const Q = [...V]; // remaining vertices
+  const S = []; // checked vertices
   const weights = V.map(el => (el === s ? 0 : Infinity));
   const previousNode = V.map(_ => -1);
 
   while (S.length < 10) {
-    //find shortest el in Q
+    // find shortest el in Q
     const minEl = findShortest(weights, V, Q);
     const minElIndex = V.indexOf(minEl);
-    //find connected minEl neighbours and
+    // find connected minEl neighbours and
     const elEdges = findNeighbours(minEl, E);
     elEdges.forEach(([el, weight]) => {
       const index = V.indexOf(el);
@@ -26,7 +26,7 @@ function calculate(V, E, s) {
         previousNode[index] = minEl;
       }
     });
-    //move el from Q to S
+    // move el from Q to S
     moveFromTo(Q, S, minEl);
   }
 

@@ -1,13 +1,13 @@
 function merge(arr, l, m, r) {
-  let firstPart = arr.slice(l, m + 1);
-  let secondPart = arr.slice(m + 1, r + 1);
+  const firstPart = arr.slice(l, m + 1);
+  const secondPart = arr.slice(m + 1, r + 1);
   let k = l;
   let i = 0;
   let j = 0;
   while (i < firstPart.length && j < secondPart.length) {
     if (firstPart[i] <= secondPart[j]) {
       arr[k] = firstPart[i];
-      i++;
+      i += 1;
     } else {
       arr[k] = secondPart[j];
       j++;
@@ -17,8 +17,8 @@ function merge(arr, l, m, r) {
 
   while (i < firstPart.length) {
     arr[k] = firstPart[i];
-    i++;
-    k++;
+    i += 1;
+    k += 1;
   }
 
   while (j < secondPart.length) {
